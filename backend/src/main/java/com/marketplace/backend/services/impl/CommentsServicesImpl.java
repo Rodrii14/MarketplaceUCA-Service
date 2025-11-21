@@ -2,6 +2,7 @@ package com.marketplace.backend.services.impl;
 
 import com.marketplace.backend.domain.dto.comments.CreateCommentsDto;
 import com.marketplace.backend.domain.dto.comments.ResponseCommentsDto;
+import com.marketplace.backend.domain.dto.comments.UpdateCommentsDto;
 import com.marketplace.backend.domain.entities.Comments;
 import com.marketplace.backend.domain.entities.Product;
 import com.marketplace.backend.domain.entities.User;
@@ -60,6 +61,18 @@ public class CommentsServicesImpl implements iCommentsServices {
     }
 
     @Override
+    public ResponseCommentsDto updateComment(UpdateCommentsDto commentsDto) {
+        User user = getUserSession();
+        Comments comments = iCommentsRepository.findCommentsByUserAndId(user, UUID.fromString(commentsDto.getId()));
+        if (comments == null) {
+            throw new CommentNotFound();
+        }
+        comments.setComment(commentsDto.getComment());
+        iCommentsRepository.save(comments);
+        return commentsMappers.castCommentsData(comments);
+    }
+
+    @Override
     public ResponseCommentsDto getCommentsById(String id) {
         Comments comments = iCommentsRepository.findCommentsById(UUID.fromString(id));
 
@@ -93,12 +106,17 @@ public class CommentsServicesImpl implements iCommentsServices {
 
     @Override
     public String deleteComment(String id) {
-        Comments commentsToDelete = iCommentsRepository.findCommentsById(UUID.fromString(id));
+        User user = getUserSession();
+        Comments commentsToDelete = iCommentsRepository.findCommentsByUserAndId(user, UUID.fromString(id));
 
         if (commentsToDelete == null) {
             throw new CommentNotFound();
         }
 
+        Product product = commentsToDelete.getProduct();
+
+        user.deleteComments(commentsToDelete);
+        product.deleteComments(commentsToDelete);
         iCommentsRepository.delete(commentsToDelete);
         return "Comment deleted successfully";
     }

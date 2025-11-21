@@ -116,4 +116,9 @@ public class User implements UserDetails {
         comments.add(comment);
         comment.setUser(this);
     }
+
+    public void deleteComments(Comments comment){
+        comments.remove(comment);
+        comment.setUser(null);
+    }
 }
