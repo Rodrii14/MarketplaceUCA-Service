@@ -42,6 +42,12 @@ public class User implements UserDetails {
     @Column(name = "role")
     private String role;
 
+    @Column(name = "reviews_count", nullable = false)
+    private Integer reviewsCount = 0;
+
+    @Column(name = "average_rating", nullable = false)
+    private Double averageRating = 0.0;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Likes> likedProducts = new ArrayList<>();
 
@@ -53,6 +59,7 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,  orphanRemoval = true,  fetch = FetchType.LAZY)
     private List<Comments> comments = new ArrayList<>();
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "faculty_id")
