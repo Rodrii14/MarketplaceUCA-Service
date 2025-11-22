@@ -774,7 +774,7 @@ Actualiza un comentario
 **Body:**
 ```json
 {
-	"productId":"productId",
+	"commentId":"commentId",
 	"comment":"comment"
 }
 ```
