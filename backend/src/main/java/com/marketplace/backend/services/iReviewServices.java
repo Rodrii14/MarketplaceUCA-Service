@@ -17,8 +17,8 @@ public interface iReviewServices {
 
     List<ResponseReviewDto> getReviewsByProductId(String productId);
 
-    // Reseñas del perfil del vendedor
-    List<ResponseReviewDto> getReviewsBySellerId(String sellerId);
+    // Reseñas del perfil del vendedor (por email/username)
+    List<ResponseReviewDto> getReviewsBySellerEmail(String email);
 
     // Reseñas que escribió el usuario autenticado
     List<ResponseReviewDto> getReviewsByUser();
