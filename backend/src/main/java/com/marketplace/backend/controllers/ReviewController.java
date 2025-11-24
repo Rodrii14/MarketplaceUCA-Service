@@ -51,9 +51,9 @@ public class ReviewController {
                 .build();
     }
 
-    @GetMapping("/seller/{id}")
-    public ResponseEntity<GeneralResponse> getReviewsBySellerId(@PathVariable String id) {
-        List<ResponseReviewDto> response = reviewServices.getReviewsBySellerId(id);
+    @GetMapping("/seller/{email}")
+    public ResponseEntity<GeneralResponse> getReviewsBySellerEmail(@PathVariable String email) {
+        List<ResponseReviewDto> response = reviewServices.getReviewsBySellerEmail(email);
 
         return GeneralResponse.builder()
                 .data(response)

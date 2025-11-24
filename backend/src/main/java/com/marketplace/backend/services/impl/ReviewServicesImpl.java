@@ -103,10 +103,13 @@ public class ReviewServicesImpl implements iReviewServices {
 
 
     @Override
-    public List<ResponseReviewDto> getReviewsBySellerId(String sellerId) {
+    public List<ResponseReviewDto> getReviewsBySellerEmail(String email) {
 
-        User seller = userRepository.findById(UUID.fromString(sellerId))
-                .orElseThrow(UserNotFound::new);
+        User seller = userRepository.findByUsername(email);
+
+        if (seller == null) {
+            throw new UserNotFound();
+        }
 
         List<Review> reviews = reviewRepository.findReviewsByReviewee(seller);
 

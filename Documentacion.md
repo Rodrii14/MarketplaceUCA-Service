@@ -1153,7 +1153,7 @@ Crea una review
 **Body:**
 ```json
 {
-	"productId":"productId",
+	"userEmail":"email@uca.edu.sv",
 	"rating":"2",
 	"comment":"comment",
 }
@@ -1166,7 +1166,7 @@ Crea una review
 		"rating": 2,
 		"comment": "comment",
 		"reviewer": "email@uca.edu.sv",
-		"productId": "productId"
+		"reviewee": "email@uca.edu.sv"
 	},
 	"message": "Ok"
 }
@@ -1188,7 +1188,7 @@ Obtener una review a partir de su id
 		"rating": 2,
 		"comment": "comment",
 		"reviewer": "email@uca.edu.sv",
-		"productId": "productId"
+		"reviewee": "email@uca.edu.sv"
 	},
 	"message": "Ok"
 }
