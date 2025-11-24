@@ -1,8 +1,5 @@
 ﻿# 📘 Documentación: Servicio Web Marketplace UCA
 
-## 🔗Enlace de la API
-**`https://pnc-proyecto-final-grupo-03-s01-production.up.railway.app`**
-
 ## ❗ Información importante sobre _funcionalidades y validaciones_
 
 - La autenticación **JWT** es obligatoria para los endpoints protegidos.
